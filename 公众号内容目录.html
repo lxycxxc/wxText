@@ -1,0 +1,211 @@
+<html lang="zh-CN" data-theme="light" data-trae-theme="dark"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>公众号内容目录</title>
+<script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+<style>
+  [v-cloak] { display: none; }
+
+  /* 模态弹框遮罩 */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+  }
+
+  /* 模态弹框容器 */
+  .modal-container {
+    position: relative;
+    width: 800px;
+    max-width: 92vw;
+    max-height: 86vh;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    animation: modal-pop 0.22s ease-out;
+  }
+
+  @keyframes modal-pop {
+    from { transform: scale(0.94); opacity: 0; }
+    to   { transform: scale(1);    opacity: 1; }
+  }
+
+  /* 关闭按钮 */
+  .modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.55);
+    color: #fff;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .modal-close:hover {
+    background: rgba(201, 169, 110, 0.95);
+    transform: rotate(90deg);
+  }
+
+  /* 内容区域：支持滚动 */
+  .modal-body {
+    flex: 1;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .modal-iframe {
+    display: block;
+    width: 100%;
+    height: 80vh;
+    max-height: 86vh;
+    border: none;
+  }
+
+  /* 过渡动画 */
+  .modal-fade-enter-active,
+  .modal-fade-leave-active {
+    transition: opacity 0.2s ease;
+  }
+  .modal-fade-enter-from,
+  .modal-fade-leave-to {
+    opacity: 0;
+  }
+
+  /* 响应式：小屏幕适配 */
+  @media (max-width: 768px) {
+    .modal-container { width: 96vw; max-height: 90vh; border-radius: 8px; }
+    .modal-iframe { height: 78vh; }
+    .modal-close { width: 30px; height: 30px; font-size: 18px; }
+  }
+</style>
+<body>
+<div id="app" v-cloak>
+        <section v-for="(item, index) in list"   style="margin-bottom:18px;">
+            <!-- 子分类标题行 -->
+            <table style="width:100%;border-collapse:collapse;border:none;margin-bottom:6px;">
+                <tbody>
+                    <tr>
+                        <td style="padding:8px 14px;background-color:#ede8df;border-left:3px solid #c9a96e;border-top:none;border-right:none;border-bottom:none;border-radius:0 4px 4px 0;box-sizing:border-box;">
+                            <span style="font-size:15px;font-weight:bold;color:#1a1a2e;">
+                                {{ item.classify }}
+                            </span>
+                        </td>
+                        <td style="width:50px;text-align:right;padding-right:14px;background-color:#ede8df;border:none;border-radius:0 4px 4px 0;box-sizing:border-box;">
+                            <span style="font-size:12px;color:#9a9aab;">
+                                {{ item.content.length }}条
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <!-- 子分类内容列表 -->
+            <section style="background-color:#ffffff;border-radius:0 0 4px 4px;overflow:hidden;display: inline-flex;flex-wrap: wrap;">
+                <section v-for="(content, idx) in item.content" :key="idx" style="padding:8px 14px 8px 12px;margin-bottom:1px;font-size:14px;line-height:1.75;color:#4a4a4a;border-bottom:1px solid #efe9de;">
+                    <span style="color:#c9a96e;margin-right:7px;font-size:11px;">▸</span>
+                    {{ content.no }} {{ content.title }}
+                    <a v-if="item.url" href="javascript:void(0)" @click="openModal(item.url+content.id)" style="color:#c9a96e;cursor:pointer;margin-left:6px;">查看</a>
+                </section>
+            </section>
+        </section>
+        <!-- 模态弹框 -->
+        <transition name="modal-fade">
+            <div v-if="modalVisible" class="modal-overlay" @click.self="closeModal">
+                <div class="modal-container">
+                    <button class="modal-close" @click="closeModal" title="关闭">×</button>
+                    <div class="modal-body">
+                        <iframe v-if="modalUrl" :src="modalUrl" class="modal-iframe"></iframe>
+                    </div>
+                </div>
+            </div>
+        </transition>
+</div>
+<script>
+   var rawData = {
+        "list": [
+            {
+                "classify": "侦探爱好者周刊",
+                "url": "./侦探爱好者周刊模板.html?date=",
+                "content": [
+                    {"id": "20260727","no": "001","title": "泼硫酸案伏法、雅典行李箱藏尸悬案再探、韩方船员死亡引争议"},
+                    {"id": "20260803","no": "002","title": "东野圭吾去世、俄罗斯选美小姐被抛尸、重庆彭水山体崩塌 51 人遇难"},
+                    {"id": "20260810","no": "003","title": "梅姨案、西平刑案、日本直播自杀案"},
+                    {"id": "20260817","no": "004","title": "雅典娜撕票案、炸街噪音命案、币圈富豪全裸坠亡"}
+                ]
+            },{
+                "classify": "要案见闻",
+                "url": "./侦探爱好者要案见闻模板.html?no=",
+                "content": [
+                  {"id": "001","no": "001","title": "梅姨案"},
+                  {"id": "002","no": "002","title": "华人加密币大亨坠亡案"},
+                  {"id": "003","no": "003","title": "超级玛丽"},
+                ]
+            },{
+                "classify": "经典游戏推荐",
+                "url": "./经典游戏推荐通用模板.html?name=",
+                "content": [
+                    {"id": "超级玛丽","no": "001","title": "超级玛丽"},
+                    {"id": "魂斗罗","no": "002","title": "魂斗罗"},
+                    {"id": "冒险岛","no": "003","title": "冒险岛"},
+                    {"id": "忍者神龟","no": "004","title": "忍者神龟"},
+                    {"id": "坦克大战","no": "005","title": "坦克大战"},
+                    {"id": "雪人兄弟","no": "006","title": "雪人兄弟"},
+                    {"id": "炸弹人","no": "007","title": "炸弹人"},
+                    {"id": "松鼠大作战","no": "007","title": "松鼠大作战"},
+                    {"id": "赤色要塞","no": "009","title": "赤色要塞"},
+
+                    {"id": "影子传说","no": "010","title": "影子传说"},
+                    {"id": "热血物语","no": "011","title": "热血物语"},
+                    {"id": "快打旋风","no": "012","title": "快打旋风"},
+                    {"id": "洛克人","no": "013","title": "洛克人"},
+                    {"id": "街头霸王","no": "014","title": "街头霸王"},
+                    {"id": "星之卡比","no": "015","title": "星之卡比"},
+                ]
+            },
+        ]
+   };
+			const { createApp } = Vue
+			createApp({
+				data() {
+					return {
+                        list: rawData.list || [],
+                        modalVisible: false,
+                        modalUrl: ''
+					}
+				},
+				methods: {
+					openModal(url) {
+						this.modalUrl = url;
+						this.modalVisible = true;
+						document.body.style.overflow = 'hidden';
+					},
+					closeModal() {
+						this.modalVisible = false;
+						this.modalUrl = '';
+						document.body.style.overflow = '';
+					}
+				}
+			}).mount('#app')
+</script>
+
+</body>

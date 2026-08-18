@@ -1,0 +1,231 @@
+<html lang="zh-CN" data-theme="light" data-trae-theme="dark"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>童年经典游戏模板</title>
+<script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+<style>
+  [v-cloak] { display: none; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #EDE4D3;
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    padding: 40px 16px;
+    min-height: 100vh;
+  }
+  .preview-wrapper { max-width: 480px; margin: 0 auto; }
+  .preview-label {
+    text-align: center; color: #8B7D6B; font-size: 13px;
+    letter-spacing: 2px; margin-bottom: 20px; font-family: Georgia, serif;
+  }
+</style>
+<body>
+<div id="app" v-cloak>
+<div class="preview-wrapper">
+  <div class="preview-label">— 公众号排版预览 · {{zhuti.name}} —</div>
+  童年经典游戏#{{no}}：{{title}}
+<!-- ↓↓这行开始选这行开始选中复制(包括外框圆角边框阴影) ↓↓↓ -->
+  <section :style="{background: zhuti.color.background.body,borderRadius: '16px',boxShadow: '0 8px 40px rgba(74, 63, 53, 0.12)', border: '1px solid #E0D5C3',maxWidth: '480px',margin: '0 auto'}">
+
+<!-- 封面标题区 -->
+<section :style="{background: zhuti.color.background.title,color: zhuti.color.title,padding: '2px 28px 44px',textAlign: 'center',borderRadius: '16px 16px 0 0'}"> 
+  <img style="max-width: 100%;height: auto;" src="https://mmbiz.qpic.cn/sz_mmbiz_gif/2gScPGwfZMtEkE7QwHnAS3bjoic1ZSNA1Jj0af8PfJBJhKlTCCL1dmmkz5Puz9iaIUxJkHf8OfctF5sicHW9ChBE9DjvEnc9alHNP2H0MwAuMw/640?wx_fmt=gif&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=0" >
+  <p style="font-family: Georgia, serif;font-size: 11px;letter-spacing: 4px;margin: 10px 0 18px 0;">
+    CLASSIC GAME MEMORIES · NO.{{no}}
+  </p>
+  <h1 style="font-size: 28px;font-weight: 700;letter-spacing: 4px;margin: 0 0 14px 0;line-height: 1.5;font-family: 'STSong', 'SimSun', serif;">
+    {{title}}
+  </h1>
+  <section :style="{width: '40px',height: '2px',background: zhuti.color.line,margin: '18px auto'}"></section>
+  <p v-for="(item,index) in desc" :key="index" style="font-size: 14px;line-height: 1.9;margin: 0;letter-spacing: 1px;">
+    {{item}}
+  </p>
+</section>
+
+<!-- 开篇引言 -->
+<section style="padding: 36px 28px 12px;">
+  <section :style="{borderLeft: '3px solid ' + zhuti.color.line,padding: '6px 0 6px 18px'}">
+    <p :style="{fontSize: '15px',color: zhuti.color.intro,lineHeight: '2.1',margin: 0,fontFamily: 'STSong, SimSun, serif'}">
+      {{intro}}
+    </p>
+  </section>
+</section>
+
+<!-- 截图:开场画面 -->
+<section style="padding: 8px 28px 16px;">
+  <section :style="{border: '1px solid '+ zhuti.color.line,borderRadius: '8px',textAlign: 'center',padding: '8px 8px',background: zhuti.color.background.card,boxShadow: '0 2px 12px rgba(192, 133, 82, 0.15)'}">
+    <span style="color: #B5A88E; font-size: 13px; letter-spacing: 2px;">📷 此处插入游戏截图</span>
+  </section>
+  <p :style="{fontSize: '12px',color: zhuti.color.imageAlt,textAlign: 'center',margin: '10px 0 0 0',letterSpacing: '1px',fontFamily: 'STSong,SimSun,serif'}">
+    图 | {{title}}
+  </p>
+</section>
+
+<!-- 分隔:花饰 -->
+<section style="text-align: center; padding: 16px 28px 4px;">
+  <span :style="{display: 'inline-block',color: zhuti.color.line,fontSize: '12px',letterSpacing: '6px'}">❀ ✦ ❀</span>
+</section>
+
+ <section v-for="(item,index) in content" :key="index">
+    <section :style="{color: zhuti.color.body,padding: '20px 28px 12px'}">
+      <h2 :style="{fontSize: '19px',fontWeight: '700',color: zhuti.color.contentTitle,margin: '0 0 18px 0',letterSpacing: '2px',fontFamily: 'STSong,SimSun,serif',paddingLeft: '14px',borderLeft: '4px solid ' + zhuti.color.line}">
+        {{item.title}}
+      </h2>
+      <p v-for="(text,index) in item.content" :key="index" style="font-size: 15px;  line-height: 2; margin: 0 0 16px 0; text-align: justify;">
+        {{text}}
+      </p>
+       
+      <section  v-if="item.card" :style="{background: zhuti.color.background.card,borderRadius: '8px',padding: '16px 18px',margin: '16px 0'}">
+        <p v-for="(card,index) in item.card" :key="index" :style="{fontSize: '14px',color: zhuti.color.card,lineHeight: '1.9',margin: 0,fontFamily: 'STSong,SimSun,serif'}">
+          {{card}}
+        </p>
+      </section>
+
+      <section v-if="item.cardPlus" :style="{background: zhuti.color.background.card,borderRadius: '8px',padding: '16px 18px',margin: '16px 0'}">
+        <p :style="{fontSize: '32px',fontWeight: '700',color: zhuti.color.line,textAlign: 'center',margin: '0 0 8px 0',letterSpacing: '2px'}">
+          {{item.cardPlus[0]}}
+        </p>
+        <p v-for="(card,index2) in item.cardPlus" v-show="index2>0" :key="index2" :style="{fontSize: '13px',color: zhuti.color.card,lineHeight: '1.8',margin: 0}">
+          {{card}}
+        </p>
+      </section>
+    </section>
+    
+    <!-- 截图:旗杆 -->
+    <section v-if="item.imageAlt" style="padding: 8px 28px 16px;">
+      <section :style="{border: '1px solid '+ zhuti.color.line,borderRadius: '8px',textAlign: 'center',padding: '8px 8px',background: zhuti.color.background.card,boxShadow: '0 2px 12px rgba(192, 133, 82, 0.15)'}">
+        <span style="color: #B5A88E; font-size: 13px; letter-spacing: 2px;">
+          📷 此处插入游戏截图
+        </span>
+      </section>
+      <p :style="{fontSize: '12px',color: zhuti.color.imageAlt,textAlign: 'center',margin: '10px 0 0 0',letterSpacing: '1px',fontFamily: 'STSong,SimSun,serif'}">
+        {{item.imageAlt}}
+      </p>
+    </section>
+
+    <!-- 分隔线 -->
+    <section v-if="index<content.length-1" style="text-align: center; padding: 16px 28px 4px;">
+      <span :style="{display: 'inline-block',width: '50px',height: '1px',background: zhuti.color.line,verticalAlign: 'middle'}">&nbsp;</span>
+      <span :style="{color: zhuti.color.line,fontSize: '11px',letterSpacing: '4px',padding: '0 10px',verticalAlign: 'middle'}">✦</span>
+      <span :style="{display: 'inline-block',width: '50px',height: '1px',background: zhuti.color.line,verticalAlign: 'middle'}">&nbsp;</span>
+    </section>
+ </section>
+
+
+<!-- 互动引导区 -->
+<section style="padding: 16px 28px 28px;">
+  <section :style="{border: '1px dashed '+ zhuti.color.line,borderRadius: '10px',padding: '20px',textAlign: 'center'}">
+    <p style="margin: 0 0 8px 0;">
+      <p v-for="(text,index) in question" :key="index" style="font-size: 14px;color: #594f43;line-height: 1.9;font-family: 'STSong', 'SimSun', serif;">
+        {{text}}
+      </p>
+    </p>
+    <p :style="{fontSize: '13px',color: zhuti.color.line,fontWeight: '700',letterSpacing: '2px'}">
+      评论区说说 ↓
+    </p>
+  </section>
+</section>
+
+<!-- 关注引导区 -->
+<section :style="{background: zhuti.color.background.follow,padding: '28px',textAlign: 'center',marginTop: '4px'}">
+  <p style="margin-bottom: 8px;font-size: 15px;color: rgb(74, 63, 53);font-weight: 700;letter-spacing: 1px;"><img src="https://mmbiz.qpic.cn/sz_mmbiz_png/2gScPGwfZMvppcWAWnpMgKUtib1FrsFRV5cIptRDwZbYTdeViblTPOvVSaFNByicicxne6WbKzPC3Sibu2dBNiaRB29OxM6ukWibgibXTCxD4VvFsyQ/640?wx_fmt=png&amp;from=appmsg" class="rich_pages wxw-img js_insertlocalimg" data-ratio="1" data-s="300,640" data-type="png" data-w="600" style="width:42px;height:42px;" type="block" data-imgfileid="100000266" data-imgqrcoded="1"></p>
+  <p style="font-size: 15px; color: #4A3F35; font-weight: 700; margin: 0 0 8px 0; letter-spacing: 1px;">仓鼠网</p>
+  <p :style="{fontSize: '13px',color: zhuti.color.title,lineHeight: '1.8',margin: '0 0 16px 0'}">
+    定期分享经典游戏故事<br>带你重温那些闪光的像素岁月
+  </p>
+  <section :style="{margin: '0px',padding: '8px 24px',boxSizing: 'border-box',display: 'inline-block',border: '1px solid '+ zhuti.color.title,borderRadius: '20px'}">
+    <span :style="{margin: '0px',padding: '0px',color: zhuti.color.title,fontSize: '13px',fontWeight: '700',letterSpacing: '2px'}">
+    <span leaf="">长按关注&nbsp;<img data-src="https://mmbiz.qpic.cn/mmbiz_jpg/2gScPGwfZMsia6icTgH7icq3e6VM3skFVhbQvYYEibVTdqGFdTpVVHhodV3EBlLSdP6WU8w6k1ZCcicnCAk8TpYhoDjx87UnZOwS8k4JCJLibxYicQ/640?wx_fmt=jpeg&amp;from=appmsg&amp;watermark=1#imgIndex=6" class="rich_pages wxw-img" data-ratio="1" data-s="300,640" data-type="jpeg" data-w="258" style="width: 35px !important; height: auto !important; visibility: visible !important;" data-croporisrc="https://mmbiz.qpic.cn/sz_mmbiz_jpg/2gScPGwfZMv8rgj4VRBsxCMLqP2ibflGnxJ8Q1JcFn9P4vksdBF89MmHmFjtGyC2VVbTFbKGyYHQr8Q0uwlA9vMeSiahuev0KBWibXSEFSfibiac/0?wx_fmt=jpeg&amp;from=appmsg" data-cropselx1="0" data-cropselx2="471" data-cropsely1="0" data-cropsely2="314" data-imgfileid="100000263" data-aistatus="1" data-original-style="width: 35px;height: 35px;" data-index="9" src="https://mmbiz.qpic.cn/mmbiz_jpg/2gScPGwfZMsia6icTgH7icq3e6VM3skFVhbQvYYEibVTdqGFdTpVVHhodV3EBlLSdP6WU8w6k1ZCcicnCAk8TpYhoDjx87UnZOwS8k4JCJLibxYicQ/640?wx_fmt=jpeg&amp;from=appmsg&amp;watermark=1&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=6" _width="35px" alt="图片" data-report-img-idx="6" data-fail="0">&nbsp;永不迷路</span></span></section>
+  </section>
+
+<!-- 底部版权 -->
+<section :style="{background: zhuti.color.background.cardPlus,padding: '16px 28px 24px',textAlign: 'center',borderRadius: '0 0 16px 16px'}">
+  <section>
+    <section data-pm-slice="2 4 [&quot;para&quot;,{&quot;tagName&quot;:&quot;section&quot;,&quot;attributes&quot;:{&quot;style&quot;:&quot;margin-right: auto;margin-bottom: 0px;margin-left: auto;color: rgb(0, 0, 0);font-family: \&quot;PingFang SC\&quot;, \&quot;Hiragino Sans GB\&quot;, \&quot;Microsoft YaHei\&quot;, sans-serif;font-size: medium;letter-spacing: normal;text-align: start;background: rgb(250, 245, 238);border-radius: 16px;box-shadow: rgba(74, 63, 53, 0.12) 0px 8px 40px;border-width: 1px;border-style: solid;border-color: rgb(224, 213, 195);max-width: 480px;&quot;},&quot;namespaceURI&quot;:&quot;http://www.w3.org/1999/xhtml&quot;}]"><section style="color: rgba(0, 0, 0, 0.9);font-size: 17px;font-family: mp-quote, &quot;PingFang SC&quot;, system-ui, -apple-system, BlinkMacSystemFont, &quot;Helvetica Neue&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei UI&quot;, &quot;Microsoft YaHei&quot;, Arial, sans-serif;line-height: 1.6;letter-spacing: 0.034em;font-style: normal;font-weight: normal;text-align: right;" data-pm-slice="0 0 []" nodeleaf="">
+    <img class="rich_pages wxw-img" data-aistatus="1" data-imgfileid="100000282" data-ratio="0.2793017456359102" data-src="https://mmbiz.qpic.cn/mmbiz_png/2gScPGwfZMvHCNMOIPPndYPibwwEcM9OQCBHibsWQfLEcdCRubam6yLwHu2ggloHp2MdWOW4qiaDpQTQyF8ibYpTrZ8rdiaBlq3gJbYvibKyzm93Y/640?wx_fmt=png&amp;from=appmsg&amp;watermark=1#imgIndex=7" data-type="png" data-w="401" style="margin: 0px; padding: 0px; max-width: 100%; height: auto !important; vertical-align: bottom; width: 177.993px !important; box-sizing: border-box !important; overflow-wrap: break-word !important; visibility: visible !important;" type="block" data-original-style="margin: 0px;padding: 0px;max-width: 100%;height: 50px;vertical-align: bottom;width: 178px;box-sizing: border-box !important;overflow-wrap: break-word !important;" data-index="10" src="https://mmbiz.qpic.cn/mmbiz_png/2gScPGwfZMvHCNMOIPPndYPibwwEcM9OQCBHibsWQfLEcdCRubam6yLwHu2ggloHp2MdWOW4qiaDpQTQyF8ibYpTrZ8rdiaBlq3gJbYvibKyzm93Y/640?wx_fmt=png&amp;from=appmsg&amp;watermark=1&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=7" _width="178px" alt="图片" data-report-img-idx="7" data-fail="0">
+    </section>
+    <p style="text-align: right;"><span leaf="">
+      <span textstyle="" style="font-size: 14px;color: rgb(61, 170, 214);">分享是一种积极的生活态</span></span><span leaf="" style="color: rgba(0, 0, 0, 0.9);font-size: 17px;font-family: mp-quote, &quot;PingFang SC&quot;, system-ui, -apple-system, BlinkMacSystemFont, &quot;Helvetica Neue&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei UI&quot;, &quot;Microsoft YaHei&quot;, Arial, sans-serif;line-height: 1.6;letter-spacing: 0.034em;font-style: normal;font-weight: normal;">
+        <img data-src="https://mmbiz.qpic.cn/sz_mmbiz_gif/2gScPGwfZMuwBtVgpvqUlgQibn8IVoI0MB2djte3WVMhSSzBic0miaWtl2FUl50G6sbdaHtMOzAgnyJVniauwvFxGpclQrQxB4LFaIuJalF1qeE/640?wx_fmt=gif&amp;from=appmsg#imgIndex=8" class="rich_pages wxw-img __bg_gif" data-ratio="0.935" data-type="gif" data-w="200" style="margin: 0px; padding: 0px; max-width: 100%; height: auto !important; vertical-align: bottom; width: 20.9868px !important; box-sizing: border-box !important; overflow-wrap: break-word !important; visibility: visible !important;" type="block" data-imgfileid="100000283" data-aistatus="1" data-original-style="margin: 0px;padding: 0px;max-width: 100%;height: 20px;vertical-align: bottom;width: 21px;box-sizing: border-box !important;overflow-wrap: break-word !important;" data-index="11" src="https://mmbiz.qpic.cn/sz_mmbiz_gif/2gScPGwfZMuwBtVgpvqUlgQibn8IVoI0MB2djte3WVMhSSzBic0miaWtl2FUl50G6sbdaHtMOzAgnyJVniauwvFxGpclQrQxB4LFaIuJalF1qeE/640?wx_fmt=gif&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=8" _width="21px" data-order="2" alt="图片" data-report-img-idx="8" data-fail="0"></span></p>
+        <p style="text-align: left;"><span leaf="" style="color: rgba(0, 0, 0, 0.9);font-size: 17px;font-family: mp-quote, &quot;PingFang SC&quot;, system-ui, -apple-system, BlinkMacSystemFont, &quot;Helvetica Neue&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei UI&quot;, &quot;Microsoft YaHei&quot;, Arial, sans-serif;line-height: 1.6;letter-spacing: 0.034em;font-style: normal;font-weight: normal;">
+          <img data-src="https://mmbiz.qpic.cn/mmbiz_gif/2gScPGwfZMssIYJtTtZA8VCNAtF2DVaUzGI4P1PpAVtFib2fRgPTpoZrDNRrUn2ryW8cLCh0pX7F9SoLia12Wzmj800xDa9ldVYIclfsrKvS0/640?wx_fmt=gif&amp;from=appmsg#imgIndex=9" class="rich_pages wxw-img __bg_gif" data-ratio="1" data-type="gif" data-w="100" style="margin: 0px; padding: 0px; max-width: 100%; height: auto !important; vertical-align: bottom; width: 20px !important; box-sizing: border-box !important; overflow-wrap: break-word !important; visibility: visible !important;" type="block" data-imgfileid="100000281" data-aistatus="1" data-original-style="margin: 0px;padding: 0px;max-width: 100%;height: 20px;vertical-align: bottom;width: 20px;box-sizing: border-box !important;overflow-wrap: break-word !important;" data-index="12" src="https://mmbiz.qpic.cn/mmbiz_gif/2gScPGwfZMssIYJtTtZA8VCNAtF2DVaUzGI4P1PpAVtFib2fRgPTpoZrDNRrUn2ryW8cLCh0pX7F9SoLia12Wzmj800xDa9ldVYIclfsrKvS0/640?wx_fmt=gif&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=9" _width="20px" data-order="3" alt="图片" data-report-img-idx="9" data-fail="0">
+    <span textstyle="" :style="{fontSize: '12px',color: zhuti.color.line}">点击阅读原文回到那个夏天</span></span></p></section></section>
+</section>
+
+<!-- ↑↑↑ 公众号正文结束 ↑↑↑ -->
+
+  </section>
+<!-- ↑↑↑ 到这里结束选中复制 ↑↑↑ -->
+
+
+</div>
+
+
+
+<div class="light"></div><div data-trae-edit-ui="true"></div>
+
+</div>
+<script>
+ var zhuti = {
+  "jingdian":{
+    name:"米黄色调(经典)",
+    color:{title:"#8b7d6b",intro:"#6b5d54",contentTitle:"#4a3f35",body:"#5c5048",line:"#c08552",card:"#8b7d6b",
+              imageAlt:"#b5a88e",background:{title:"#f0e6d2",follow:"#f0e6d2",body:"#faf5ee",card:"#f5eddf",},}
+  },
+
+  "maliao":{
+    name:"红绿色调(马里奥)",
+    color:{title:"#ffd2ab",intro:"#6b5d54",contentTitle:"#4a3f35",body:"#5c5048",line:"#c08552",card:"#8b7d6b",
+              imageAlt:"#b5a88e",background:{title:"#c16e66",follow:"#c16e66",body:"#cccbab",card:"#f3e3c7",},}
+  },
+
+  "hundouluo":{
+    name:"绿蓝色调(魂斗罗)",
+    color:{title:"#553f2c",intro:"#d1d1d1",contentTitle:"#f3f3f3",body:"ebebeb",line:"#dd9a60",card:"#8b7d6b",
+              imageAlt:"#b5a88e",background:{title:"#cccbab",follow:"#cccbab",body:"#6995b5",card:"#bfba6e",},}
+  },
+
+  "maoxiandao":{
+    name:"蓝黄色调(冒险岛)",
+    color:{title:"#553f2c",intro:"#e5e5e5",contentTitle:"white",body:"white",line:"#e51400",card:"#695f52",
+              imageAlt:"#b5a88e",background:{title:"#1fbfe5",follow:"#1fbfe5",body:"#cd803c",card:"#00c924",},}
+  },
+
+ }
+ 
+  
+ //根据url动态加载js文件
+  var urlParams = new URLSearchParams(window.location.search);
+  var date = urlParams.get('name');
+  var jsFile = `./游戏推荐/js/${date?date:"魂斗罗"}.js`;
+  //动态加载js文件
+  var script = document.createElement('script');
+  script.src = jsFile;
+  document.head.appendChild(script);
+
+ 
+
+</script>
+<script>
+   script.onload = function() {
+			var rawData = jsonData;
+			const { createApp } = Vue
+			createApp({
+				data() {
+					return {
+            no: rawData.no||"000",
+						title: rawData.title,
+						desc: rawData.desc,
+						intro: rawData.intro,
+						content: rawData.data,
+            question: rawData.question,
+            zhuti: zhuti[rawData.zhuti || "jingdian"],
+					}
+				},
+				computed: {
+					
+				}
+			}).mount('#app')
+   }
+		</script>
+
+</body></html>

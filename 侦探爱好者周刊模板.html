@@ -1,0 +1,308 @@
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>侦探爱好者周刊</title>
+		<script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+		<style>
+			[v-cloak] { display: none; }
+		</style>
+		<!-- 
+			select * from tuisong_resou where createtime>='20260810' and createtime<'20260817' order by top
+		-->
+	</head>
+	<body style="margin:0;padding:0;font-family:-apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;">
+		<div id="app" v-cloak style="max-width:720px;margin:5px auto;">
+			<p style="max-width:720px;margin:5px auto;background-color: white;">侦探爱好者周刊#{{no}}：{{title}}</p>
+			<p style="max-width:720px;margin:5px auto;color: #8B7D6B;background-color: white; font-size: 13px;letter-spacing: 2px;  font-family: Georgia, serif;">
+			点击上方  
+			<img data-src="https://mmbiz.qpic.cn/mmbiz_gif/2gScPGwfZMssIYJtTtZA8VCNAtF2DVaUzGI4P1PpAVtFib2fRgPTpoZrDNRrUn2ryW8cLCh0pX7F9SoLia12Wzmj800xDa9ldVYIclfsrKvS0/640?wx_fmt=gif&amp;from=appmsg#imgIndex=9" class="rich_pages wxw-img __bg_gif" data-ratio="1" data-type="gif" data-w="100" style="transform: rotate(180deg);margin: 0px; padding: 0px; max-width: 100%; height: auto !important; vertical-align: bottom; width: 20px !important; box-sizing: border-box !important; overflow-wrap: break-word !important; visibility: visible !important;" type="block" data-imgfileid="100000281" data-aistatus="1" data-original-style="margin: 0px;padding: 0px;max-width: 100%;height: 20px;vertical-align: bottom;width: 20px;box-sizing: border-box !important;overflow-wrap: break-word !important;" data-index="12" src="https://mmbiz.qpic.cn/mmbiz_gif/2gScPGwfZMssIYJtTtZA8VCNAtF2DVaUzGI4P1PpAVtFib2fRgPTpoZrDNRrUn2ryW8cLCh0pX7F9SoLia12Wzmj800xDa9ldVYIclfsrKvS0/640?wx_fmt=gif&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=9" _width="20px" data-order="3" alt="图片" data-report-img-idx="9" data-fail="0">
+			<spam style="color: #576b95;">【Lxycx侦探社】</spam>关注获得更多服务
+			</p>
+			<table bgcolor="#f4efe6" cellpadding="0" cellspacing="0" style="width:100%;table-layout:fixed;border-collapse:collapse;border:none;background-color:#f4efe6;">
+				<tbody>
+					<tr>
+						<td bgcolor="#f4efe6" style="background-color:#f4efe6;border:none;padding:0;overflow:hidden;">
+							<section style="width:100%;overflow:hidden;box-sizing:border-box;word-break:break-word;background-color:#f4efe6;">
+								<!-- 顶部标题区 -->
+								<section style="background-color:#1a1a2e;padding:36px 24px 28px;text-align:center;">
+									<section style="width:36px;height:2px;background-color:#c9a96e;margin:0 auto 18px;"></section>
+									<p style="margin:0 0 6px;font-size:26px;font-weight:bold;color:#c9a96e;letter-spacing:6px;font-family:Georgia, 'Times New Roman', 'STSong', 'SimSun', serif;">
+										侦探爱好者周刊
+									</p>
+									<p style="margin:0 0 14px;font-size:11px;color:#9a9aab;letter-spacing:3px;">
+										DETECTIVE ENTHUSIAST WEEKLY
+									</p>
+									<p style="margin:0;font-size:13px;color:#e8e6e3;">
+										{{ dateRange }}
+									</p>
+									<section style="text-align:center;margin-top:14px;">
+										<span v-for="tag in tags" :key="tag" style="display:inline-block;padding:4px 14px;margin:3px;border:1px solid #c9a96e;border-radius:14px;font-size:12px;color:#c9a96e;">
+											{{ tag }}
+										</span>
+									</section>
+									<section style="width:36px;height:2px;background-color:#c9a96e;margin:18px auto 0;"></section>
+								</section>
+								<section style="padding: 8px 8px 16px;">
+									<section style="border: 1px solid #C08552; border-radius: 8px; padding: 8px 8px; background: #F5EDDF; text-align: center; box-shadow: 0 2px 12px rgba(192, 133, 82, 0.15);">
+										<span style="color: #B5A88E; font-size: 13px; letter-spacing: 2px;">📷 此处插入截图</span>
+									</section>
+<!-- 									<p style="font-size: 12px; color: #B5A88E; text-align: center; margin: 10px 0 0 0; letter-spacing: 1px; font-family: 'STSong', 'SimSun', serif;">图 | 插旗那一刻,分数唰唰往上跳</p>
+ -->								</section>
+
+								<!-- 编者按 -->
+								<section style="margin:20px 14px 0;padding:14px 18px;background-color:#f5edd9;border-left:4px solid #c9a96e;border-radius:0 6px 6px 0;">
+									<p style="margin:0 0 8px;font-size:13px;font-weight:bold;color:#b8941f;letter-spacing:2px;background-color:#f5edd9;">
+										✎ 编者按
+									</p>
+									<p style="margin:0;font-size:14px;line-height:1.8;color:#3a3a3a;">
+										{{ intro }}
+									</p>
+								</section>
+
+								<!-- 警告声明 -->
+								<section style="margin:14px 14px 0;padding:12px 18px;background-color:#fdf2f2;border-left:4px solid #a02838;border-radius:0 6px 6px 0;">
+									<p style="margin:0;font-size:13px;line-height:1.7;color:#a02838;">
+										<strong>⚠ 警告声明</strong>：{{ warning }}
+									</p>
+								</section>
+
+								<!-- 各分类大区块 -->
+								<section v-for="(cat, catIndex) in categories" :key="cat.name" style="margin:20px 14px 0;background-color:#f4efe6;">
+									<!-- 大类标题栏 -->
+									<section style="margin-bottom:14px;background-color:#1a1a2e;padding:13px 18px;border-radius:6px;box-sizing:border-box;">
+										<section style="display:inline-block;width:28px;height:28px;line-height:28px;text-align:center;background-color:#c9a96e;color:#1a1a2e;border-radius:50%;font-size:13px;font-weight:bold;margin-right:8px;vertical-align:middle;">
+											{{ String(catIndex + 1).padStart(2, '0') }}
+										</section>
+										<span style="font-size:17px;font-weight:bold;color:#c9a96e;vertical-align:middle;letter-spacing:2px;">
+											{{ cat.name }}
+										</span>
+										<span style="float:right;font-size:12px;color:#9a9aab;line-height:28px;">
+											共{{ cat.total }}条
+										</span>
+									</section>
+
+									<!-- 各子分类 -->
+									<section v-for="(items, subName) in cat.subs" :key="subName" style="margin-bottom:18px;">
+										<!-- 子分类标题行 -->
+										<table style="width:100%;border-collapse:collapse;border:none;margin-bottom:6px;">
+											<tbody>
+												<tr>
+													<td style="padding:8px 14px;background-color:#ede8df;border-left:3px solid #c9a96e;border-top:none;border-right:none;border-bottom:none;border-radius:0 4px 4px 0;box-sizing:border-box;">
+														<span style="font-size:15px;font-weight:bold;color:#1a1a2e;">
+															{{ subName }}
+														</span>
+													</td>
+													<td style="width:50px;text-align:right;padding-right:14px;background-color:#ede8df;border:none;border-radius:0 4px 4px 0;box-sizing:border-box;">
+														<span style="font-size:12px;color:#9a9aab;">
+															{{ items.length }}条
+														</span>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+										<!-- 子分类内容列表 -->
+										<section style="background-color:#ffffff;border-radius:0 0 4px 4px;overflow:hidden;">
+											<section v-for="(item, idx) in items" :key="idx" style="padding:8px 14px 8px 12px;margin-bottom:1px;font-size:14px;line-height:1.75;color:#4a4a4a;border-bottom:1px solid #efe9de;">
+												<span style="color:#c9a96e;margin-right:7px;font-size:11px;">▸</span>
+												{{ item }}
+											</section>
+										</section>
+									</section>
+								</section>
+
+								<!-- 分隔线 -->
+								<section style="text-align:center;margin:20px 14px;color:#c9a96e;font-size:12px;letter-spacing:6px;background-color:#f4efe6;padding:4px 0;">
+									◆ ◆ ◆
+								</section>
+
+								<!-- 数据小结 -->
+								<section style="margin:20px 14px 0;padding:20px 18px;background-color:#1a1a2e;border-radius:8px;text-align:center;">
+									<section style="width:40px;height:2px;background-color:#c9a96e;margin:0 auto 14px;"></section>
+									<p style="margin:0 0 14px;font-size:16px;font-weight:bold;color:#c9a96e;letter-spacing:3px;">
+										📊 数据小结
+									</p>
+									<section style="text-align:center;margin-bottom:18px;padding:16px 0;border-top:1px solid #2d2d44;border-bottom:1px solid #2d2d44;">
+										<p style="margin:0;font-size:42px;font-weight:bold;color:#c9a96e;font-family:Georgia, 'Times New Roman', 'STSong', 'SimSun', serif;">
+											{{ totalItems }}
+										</p>
+										<p style="margin:4px 0 0;font-size:12px;color:#9a9aab;letter-spacing:2px;">
+											本周收录热搜条目
+										</p>
+									</section>
+									<p style="margin:0 0 8px;font-size:12px;color:#9a9aab;letter-spacing:1px;text-align:left;">
+										各类目条目分布
+									</p>
+									<section v-for="(cat, idx) in categories" :key="idx" style="margin-bottom:10px;">
+										<section style="margin-bottom:4px;overflow:hidden;line-height:1.4;">
+											<span style="float:left;font-size:12px;color:#e8e6e3;">
+												{{ cat.name }}
+											</span>
+											<span style="float:right;font-size:13px;font-weight:bold;color:#c9a96e;">
+												{{ cat.total }}
+											</span>
+										</section>
+										<section :style="{ height: '14px', width: (cat.total * 100 / totalItems) + '%', backgroundColor: cat.color, borderRadius: '0 3px 3px 0' }"></section>
+									</section>
+									
+									<!-- 各分类子分类统计 -->
+									<!-- <section v-for="cat in categories" :key="cat.name" style="margin-top:14px;">
+										<section style="margin-bottom:10px;padding:10px 14px;background-color:#252539;border-radius:5px;">
+											<table style="width:100%;border-collapse:collapse;border:none;">
+												<tbody>
+													<tr>
+														<td style="font-size:14px;font-weight:bold;color:#c9a96e;border:none;">
+															{{ cat.name }}
+														</td>
+														<td style="text-align:right;font-size:18px;font-weight:bold;color:#e8d9b8;border:none;">
+															{{ cat.total }}
+															<span style="font-size:11px;color:#9a9aab;font-weight:normal;">条</span>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+											<section style="margin-top:6px;">
+												<span v-for="(items, subName) in cat.subs" :key="subName" style="display:inline-block;padding:2px 8px;margin:2px;background-color:#2d2d44;border-radius:8px;font-size:11px;color:#9a9aab;">
+													{{ subName }}{{ items.length }}
+												</span>
+											</section>
+										</section>
+									</section> -->
+								</section>
+
+								<!-- 免责声明 -->
+								<section style="margin:20px 14px 0;padding:20px 18px;background-color:#1a1a2e;border-radius:8px;text-align:center;">
+									<section style="width:40px;height:2px;background-color:#c9a96e;margin:0 auto 14px;"></section>
+									<p style="margin:0 0 10px;font-size:13px;line-height:1.8;color:#e8e6e3;text-align:left;">
+										<strong style="color:#c9a96e;">完整免责声明</strong>：{{ disclaimer }}
+									</p>
+									<section style="width:40px;height:1px;background-color:#2d2d44;margin:14px auto;"></section>
+									<p style="margin:0;font-size:14px;font-weight:bold;color:#c9a96e;letter-spacing:4px;font-family:Georgia, 'Times New Roman', 'STSong', 'SimSun', serif;">
+										侦探爱好者周刊
+									</p>
+									<p style="margin:6px 0 0;font-size:11px;color:#9a9aab;letter-spacing:2px;">
+										DETECTIVE ENTHUSIAST WEEKLY · 2026
+									</p>
+
+									<section style="margin: 0px;padding: 8px 24px;box-sizing: border-box;display: inline-block;border: 1px solid rgb(237, 142, 60);border-radius: 20px;">
+										<span style="margin: 0px;padding: 0px;box-sizing: border-box;font-size: 13px;color: rgb(237, 142, 60);font-weight: 700;letter-spacing: 2px;">
+											<span leaf="">
+												长按关注&nbsp;
+												<img data-src="https://mmbiz.qpic.cn/sz_mmbiz_jpg/A1A4wl47RvPVWiaXzziawaLdl88f7YxicH8CzToY0hbEW3pgCP5jnqeXN8NoW0IknY2NvB6gc5vwMe0lrbHhDc5NIibZibooDLVr20NrnyWD2SlU/640?wx_fmt=jpeg&amp;from=appmsg&amp;watermark=1#imgIndex=1" class="rich_pages wxw-img" data-ratio="1" data-s="300,640" data-type="jpeg" data-w="258" style="width: 50px !important; height: auto !important; visibility: visible !important;" type="inline" data-imgfileid="301862010" data-aistatus="1" data-original-style="width:50px;height:50px;" data-index="4" src="https://mmbiz.qpic.cn/sz_mmbiz_jpg/A1A4wl47RvPVWiaXzziawaLdl88f7YxicH8CzToY0hbEW3pgCP5jnqeXN8NoW0IknY2NvB6gc5vwMe0lrbHhDc5NIibZibooDLVr20NrnyWD2SlU/640?wx_fmt=jpeg&amp;from=appmsg&amp;watermark=1&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=1" _width="50px" alt="图片" data-report-img-idx="2" data-fail="0">
+												&nbsp;永不迷路
+											</span>
+										</span>
+									</section>
+
+
+									<section style="color: rgba(0, 0, 0, 0.9);font-size: 17px;font-family: mp-quote, &quot;PingFang SC&quot;, system-ui, -apple-system, BlinkMacSystemFont, &quot;Helvetica Neue&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei UI&quot;, &quot;Microsoft YaHei&quot;, Arial, sans-serif;line-height: 1.6;letter-spacing: 0.034em;font-style: normal;font-weight: normal;text-align: right;"
+									data-pm-slice="0 0 []" nodeleaf="">
+										<img class="rich_pages wxw-img" data-aistatus="1" data-imgfileid="100000282"
+										data-ratio="0.2793017456359102" data-src="https://mmbiz.qpic.cn/mmbiz_png/2gScPGwfZMvHCNMOIPPndYPibwwEcM9OQCBHibsWQfLEcdCRubam6yLwHu2ggloHp2MdWOW4qiaDpQTQyF8ibYpTrZ8rdiaBlq3gJbYvibKyzm93Y/640?wx_fmt=png&amp;from=appmsg&amp;watermark=1#imgIndex=7"
+										data-type="png" data-w="401" style="margin: 0px; padding: 0px; max-width: 100%; height: auto !important; vertical-align: bottom; width: 177.993px !important; box-sizing: border-box !important; overflow-wrap: break-word !important; visibility: visible !important;"
+										type="block" data-original-style="margin: 0px;padding: 0px;max-width: 100%;height: 50px;vertical-align: bottom;width: 178px;box-sizing: border-box !important;overflow-wrap: break-word !important;"
+										data-index="10" src="https://mmbiz.qpic.cn/mmbiz_png/2gScPGwfZMvHCNMOIPPndYPibwwEcM9OQCBHibsWQfLEcdCRubam6yLwHu2ggloHp2MdWOW4qiaDpQTQyF8ibYpTrZ8rdiaBlq3gJbYvibKyzm93Y/640?wx_fmt=png&amp;from=appmsg&amp;watermark=1&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=7"
+										_width="178px" alt="图片" data-report-img-idx="7" data-fail="0">
+									</section>
+									<p style="text-align: right;">
+										<span leaf="">
+											<span textstyle="" style="font-size: 14px;color: rgb(61, 170, 214);">
+												分享是一种积极的生活态
+											</span>
+										</span>
+										<span leaf="" style="color: rgba(0, 0, 0, 0.9);font-size: 17px;font-family: mp-quote, &quot;PingFang SC&quot;, system-ui, -apple-system, BlinkMacSystemFont, &quot;Helvetica Neue&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft YaHei UI&quot;, &quot;Microsoft YaHei&quot;, Arial, sans-serif;line-height: 1.6;letter-spacing: 0.034em;font-style: normal;font-weight: normal;">
+											<img data-src="https://mmbiz.qpic.cn/sz_mmbiz_gif/2gScPGwfZMuwBtVgpvqUlgQibn8IVoI0MB2djte3WVMhSSzBic0miaWtl2FUl50G6sbdaHtMOzAgnyJVniauwvFxGpclQrQxB4LFaIuJalF1qeE/640?wx_fmt=gif&amp;from=appmsg#imgIndex=8"
+											class="rich_pages wxw-img __bg_gif" data-ratio="0.935" data-type="gif"
+											data-w="200" style="margin: 0px; padding: 0px; max-width: 100%; height: auto !important; vertical-align: bottom; width: 20.9868px !important; box-sizing: border-box !important; overflow-wrap: break-word !important; visibility: visible !important;"
+											type="block" data-imgfileid="100000283" data-aistatus="1" data-original-style="margin: 0px;padding: 0px;max-width: 100%;height: 20px;vertical-align: bottom;width: 21px;box-sizing: border-box !important;overflow-wrap: break-word !important;"
+											data-index="11" src="https://mmbiz.qpic.cn/sz_mmbiz_gif/2gScPGwfZMuwBtVgpvqUlgQibn8IVoI0MB2djte3WVMhSSzBic0miaWtl2FUl50G6sbdaHtMOzAgnyJVniauwvFxGpclQrQxB4LFaIuJalF1qeE/640?wx_fmt=gif&amp;from=appmsg&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1#imgIndex=8"
+											_width="21px" data-order="2" alt="图片" data-report-img-idx="8" data-fail="0">
+										</span>
+									</p>
+								
+								</section>
+
+								<section style="height:20px;background-color:#f4efe6;"></section>
+							</section>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!-- <script src="./侦探爱好者周刊/20260817/000.js"></script> -->
+		<script>
+			//根据url动态加载js文件
+			var urlParams = new URLSearchParams(window.location.search);
+			var date = urlParams.get('date');
+			var jsFile = `./侦探爱好者周刊/${date?date:"20260817"}/000.js`;
+			//动态加载js文件
+			var script = document.createElement('script');
+			script.src = jsFile;
+			document.head.appendChild(script);
+		</script>
+		<script>
+			//js动态加载完成后，执行以下代码
+			script.onload = function() {
+				var rawData = jsonData.content;
+				const { createApp } = Vue
+				var classify = [];
+				var total = 0;
+				for (const [name, subs] of Object.entries(rawData)) {
+					classify.push(name);
+					total += Object.values(subs).reduce((acc, cur) => acc + cur.length, 0);
+				}
+				console.log(classify);
+
+
+				createApp({
+					data() {
+						return {
+							no: jsonData.no,
+							title: jsonData.title,
+							tags: jsonData.title.split("、"),
+							dateRange: jsonData.date,
+							intro: `本期周刊基于${jsonData.date2}的公开热搜数据整理，共收录与${classify.join("、")}等相关的条目${total}条`,
+							warning: "本文为公开热搜信息的二次整理，仅供侦探爱好者交流参考。文中涉及的案件信息均以官方通报为准，请勿传播未经证实的内容。请勿模仿任何违法行为。",
+							disclaimer: "本文内容系基于公开网络热搜数据的二次整理汇编，仅供侦探推理爱好者交流参考。文中涉及的案件信息均以公安机关、司法机关等官方通报为准。作者不对信息的完整性、准确性和时效性作出保证。请勿传播未经官方证实的信息，请勿模仿任何违法行为。如涉及侵权，请联系删除。"
+						}
+					},
+					computed: {
+						categoryColors() {
+							return {
+								"真实案件": "#3d5a80",
+								"悬疑推理": "#c9a96e",
+								"科学探案": "#5e8b7e",
+								"历史谜团": "#8b6c87",
+								"异常现象": "#a02838"
+							}
+						},
+						categories() {
+							const result = []
+							for (const [name, subs] of Object.entries(rawData)) {
+								let total = 0
+								const subObj = {}
+								for (const [subName, items] of Object.entries(subs)) {
+									subObj[subName] = items
+									total += items.length
+								}
+								result.push({
+									name: name,
+									subs: subObj,
+									total: total,
+									color: this.categoryColors[name] || "#c9a96e"
+								})
+							}
+							return result
+						},
+						totalItems() {
+							return this.categories.reduce((sum, cat) => sum + cat.total, 0)
+						}
+					}
+				}).mount('#app')
+			};
+
+
+			
+		</script>
+	</body>
+</html>
